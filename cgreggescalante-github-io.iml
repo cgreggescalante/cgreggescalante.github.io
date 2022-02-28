@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery-3.1.1" level="application" />
     <orderEntry type="library" name="angular-route" level="application" />
+    <orderEntry type="library" name="4d1439da56" level="application" />
   </component>
 </module>

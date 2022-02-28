@@ -9,3 +9,7 @@
 .nav.nav-item li a {
   color: #5C4B51;
 }
+
+.collapse {
+  margin-right: 12px;
+}
