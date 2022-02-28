@@ -4,6 +4,7 @@ import { HomeComponent } from '../home/home.component';
 import { AboutComponent } from "../about/about.component";
 import {RouterModule, Routes} from "@angular/router";
 import {ProjectsComponent} from "../projects/projects.component";
+import {ProjectSnippetComponent} from "../project-snippet/project-snippet.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   declarations: [
     AboutComponent,
     HomeComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    ProjectSnippetComponent
   ],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
