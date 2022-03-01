@@ -1,5 +1,6 @@
 <div id="featuredProjects">
   <h2>Featured Projects</h2>
-
-  
+  <div class="container">
+    <app-project-snippet *ngFor="let project of featuredProjects" [project]="project"></app-project-snippet>
+  </div>
 </div>

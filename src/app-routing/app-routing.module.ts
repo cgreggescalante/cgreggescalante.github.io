@@ -5,6 +5,7 @@ import { AboutComponent } from "../about/about.component";
 import {RouterModule, Routes} from "@angular/router";
 import {ProjectsComponent} from "../projects/projects.component";
 import {ProjectSnippetComponent} from "../project-snippet/project-snippet.component";
+import {CommonModule} from "@angular/common";
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -19,7 +20,7 @@ const routes: Routes = [
     ProjectsComponent,
     ProjectSnippetComponent
   ],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), CommonModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
