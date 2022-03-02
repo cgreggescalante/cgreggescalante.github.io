@@ -8,6 +8,6 @@ export const config: ScullyConfig = {
   projectName: "cgreggescalante-github-io",
   // add spsModulePath when using de Scully Platform Server,
   outDir: './docs',
-  routes: {
-  }
+  routes: {},
+  extraRoutes: ['/projects/example']
 };
