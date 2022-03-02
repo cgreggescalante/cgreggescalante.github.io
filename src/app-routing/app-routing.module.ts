@@ -7,12 +7,14 @@ import { ProjectsComponent } from "../projects/projects.component";
 import { ProjectSnippetComponent } from "../project-snippet/project-snippet.component";
 import { CommonModule } from "@angular/common";
 import { ProjectDetailComponent } from "../project-detail/project-detail.component";
+import {PageNotFoundComponent} from "../page-not-found/page-not-found.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'projects', component: ProjectsComponent },
   { path: 'projects/:projectURI', component: ProjectDetailComponent },
   { path: 'about', component: AboutComponent },
+  { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ]
 
 @NgModule({
@@ -21,7 +23,8 @@ const routes: Routes = [
     HomeComponent,
     ProjectsComponent,
     ProjectSnippetComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    PageNotFoundComponent
   ],
   imports: [RouterModule.forRoot(routes), CommonModule],
   exports: [RouterModule]
