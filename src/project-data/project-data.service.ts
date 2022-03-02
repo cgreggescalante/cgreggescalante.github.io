@@ -1,5 +1,5 @@
 import { Project } from "../project/project";
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +7,7 @@ import { Injectable } from "@angular/core";
 export class ProjectDataService {
   _projects: Project[] = [];
   _featuredProjects: Project[] = [];
+  notLoaded: boolean = true;
 
   constructor() {
     fetch('./assets/projects.json').then(
@@ -24,6 +25,8 @@ export class ProjectDataService {
             }
           }
         )
+
+        this.notLoaded = false;
       }
     );
   }

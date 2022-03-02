@@ -6,6 +6,7 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { AppRoutingModule } from "../app-routing/app-routing.module";
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import {FooterComponent} from "../footer/footer.component";
+import {ProjectDataService} from "../project-data/project-data.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import {FooterComponent} from "../footer/footer.component";
     AppRoutingModule,
     ScullyLibModule
   ],
-  providers: [],
+  providers: [ProjectDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

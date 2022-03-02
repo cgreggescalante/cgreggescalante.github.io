@@ -19,8 +19,15 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
     const projectURI = String(routeParams.get('projectURI'));
-    console.log(projectURI);
-    this.project = this.projectDataService.getProject(projectURI);
-    console.log(this.project);
+    this.waitForLoad(projectURI);
+  }
+
+  waitForLoad(uri: string) {
+    if (this.projectDataService.notLoaded) {
+      console.log("waiting");
+      setTimeout(() => this.waitForLoad(uri), 100);
+    } else {
+      this.project = this.projectDataService.getProject(uri);
+    }
   }
 }
