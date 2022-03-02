@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Example",
+    "uri": "example",
+    "blurb": "This is a short description.",
+    "description": "This is a somewhat longer description of the project.",
+    "image": "none",
+    "featured": true
+  }
+]

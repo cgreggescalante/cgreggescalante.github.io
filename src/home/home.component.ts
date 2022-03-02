@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { Project } from "../project/project";
+import {ProjectDataService} from "../project-data/project-data.service";
 
 @Component({
   selector:'app-home',
@@ -7,9 +7,11 @@ import { Project } from "../project/project";
   styleUrls:['./home.component.css']
 })
 export class HomeComponent {
-  featuredProjects = [
-    new Project(1, "title", "description", ""),
-    new Project(2, "other title", "different description", ""),
-    new Project(3, "another title", "more description", "")
-  ];
+  constructor(
+    private projectDataService: ProjectDataService
+  ) { }
+
+  get featuredProjects() {
+    return this.projectDataService.getFeaturedProjects()
+  }
 }
