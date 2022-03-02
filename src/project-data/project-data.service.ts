@@ -17,16 +17,19 @@ export class ProjectDataService {
       jsonData => {
         jsonData.forEach(
           (element: Object) => {
-            console.log(element)
             const project = new Project(element);
             this._projects.push(project);
-            if (project) {
+            if (project.featured) {
               this._featuredProjects.push(project);
             }
           }
         )
       }
     );
+  }
+
+  getProject(uri: string) {
+    return this._projects.find(project => project.uri === uri);
   }
 
   getProjects() {
