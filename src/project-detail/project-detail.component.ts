@@ -10,6 +10,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ProjectDetailComponent implements OnInit {
   project: Project | undefined;
+  article: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,6 +21,12 @@ export class ProjectDetailComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap;
     const projectURI = String(routeParams.get('projectURI'));
     this.waitForLoad(projectURI);
+
+    fetch('../assets/projects/spotify_history.html')
+      .then(response => response.text())
+      .then(text => {
+        this.article = text;
+      });
   }
 
   waitForLoad(uri: string) {

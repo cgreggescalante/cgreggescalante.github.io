@@ -1,5 +1,6 @@
 <div class="container" *ngIf="project">
   <img src="assets/images/{{ project.image }}" class="img-fluid" alt="">
   <h3>{{ project.title }}</h3>
-  <div markdown src="../assets/projects/{{ project.uri }}.md"></div>
+  <div [innerHTML]="article"></div>
 </div>
+
