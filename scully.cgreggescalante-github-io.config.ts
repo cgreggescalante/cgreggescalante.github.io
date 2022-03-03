@@ -9,5 +9,5 @@ export const config: ScullyConfig = {
   // add spsModulePath when using de Scully Platform Server,
   outDir: './docs',
   routes: {},
-  extraRoutes: ['/projects/example']
+  extraRoutes: ['/projects/spotify_history']
 };
