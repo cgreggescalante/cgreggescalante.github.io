@@ -7,7 +7,7 @@ import {Project} from "../project/project";
   styleUrls:['./project-snippet.component.css']
 })
 export class ProjectSnippetComponent implements OnChanges {
-  private _project: Project = new Project({title: "", uri: "", blurb: "", description: "", image: "", featured: ""});
+  private _project: Project = Object.assign(new Project(), {})
 
   @Input()
   set project(value: Project) {

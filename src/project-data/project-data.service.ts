@@ -18,7 +18,7 @@ export class ProjectDataService {
       jsonData => {
         jsonData.forEach(
           (element: Object) => {
-            const project = new Project(element);
+            const project = Object.assign(new Project(), element);
             this._projects.push(project);
             if (project.featured) {
               this._featuredProjects.push(project);

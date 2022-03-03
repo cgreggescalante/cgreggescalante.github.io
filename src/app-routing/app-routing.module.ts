@@ -8,6 +8,7 @@ import { ProjectSnippetComponent } from "../project-snippet/project-snippet.comp
 import { CommonModule } from "@angular/common";
 import { ProjectDetailComponent } from "../project-detail/project-detail.component";
 import {PageNotFoundComponent} from "../page-not-found/page-not-found.component";
+import {MarkdownModule} from "ngx-markdown";
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -26,7 +27,11 @@ const routes: Routes = [
     ProjectDetailComponent,
     PageNotFoundComponent
   ],
-  imports: [RouterModule.forRoot(routes), CommonModule],
+  imports: [
+    RouterModule.forRoot(routes),
+    CommonModule,
+    MarkdownModule.forRoot()
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
