@@ -2,7 +2,8 @@ const { registerPlugin } = require('@scullyio/scully');
 
 const projectURIPlugin = async (route, options) => {
   return Promise.resolve([
-    { route: '/projects/spotify_history'}
+    { route: '/projects/spotify_history'},
+    { route: '/projects/logo_interpreter'}
   ]);
 };
 

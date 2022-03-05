@@ -14,5 +14,5 @@ export const config: ScullyConfig = {
       type: 'projectURIPlugin'
     }
   },
-  extraRoutes: ['/projects/spotify_history']
+  extraRoutes: ['/projects/spotify_history', '/projects/logo_interpreter']
 };
