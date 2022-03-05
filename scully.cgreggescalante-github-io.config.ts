@@ -1,3 +1,4 @@
+require('./scully-plugins/project-uriplugin.plugin.js');
 import { ScullyConfig } from '@scullyio/scully';
 
 /** this loads the default render plugin, remove when switching to something else. */
@@ -8,6 +9,10 @@ export const config: ScullyConfig = {
   projectName: "cgreggescalante-github-io",
   // add spsModulePath when using de Scully Platform Server,
   outDir: './docs',
-  routes: {},
-  extraRoutes: ['/projects/spotify_history/spotify_history']
+  routes: {
+    '/projects/:projectURI': {
+      type: 'projectURIPlugin'
+    }
+  },
+  extraRoutes: ['/projects/spotify_history']
 };
