@@ -4,6 +4,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/docs" />
     </content>
     <content url="file://$MODULE_DIR$/dist" />
     <orderEntry type="sourceFolder" forTests="false" />

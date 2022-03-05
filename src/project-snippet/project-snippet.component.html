@@ -1,11 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-md">
-      <img src="assets/images/{{ project.image }}" class="img-fluid" alt="PICTURE">
+      <img src="assets/projects/{{ project.uri }}/{{ project.image }}" class="img-fluid" alt="{{ project.image }}">
     </div>
     <div class="col-md">
-      <a href="projects/{{ project.uri }}"><h4>{{ project.title }}</h4></a>
+      <a href="projects/{{ project.uri }}"><h3>{{ project.title }}</h3></a>
+      <span *ngFor="let tag of project.tags" class="badge rounded-pill bg-primary">{{ tag }}</span>
+      <br><br>
       <p>{{ project.blurb }}</p>
     </div>
   </div>
+  <br>
 </div>

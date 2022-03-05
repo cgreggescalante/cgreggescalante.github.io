@@ -5,4 +5,5 @@ export class Project {
   description: string | undefined;
   image: string | undefined;
   featured: boolean | undefined;
+  tags: [string] | undefined
 }

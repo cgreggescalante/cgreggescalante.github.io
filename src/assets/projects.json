@@ -2,6 +2,20 @@
   {
     "title": "Spotify History Analysis",
     "uri": "spotify_history",
-    "featured": true
+    "image": "top_10_artists.png",
+    "featured": true,
+    "blurb": "An exploration of my Spotify listening history.",
+    "tags": [
+      "Data Analysis", "Python", "SQLite"
+    ]
+  },
+  {
+    "title": "Logo Interpreter",
+    "uri": "logo_interpreter",
+    "featured": true,
+    "blurb": "An implementation of the programming language Logo. Written in Python.",
+    "tags": [
+      "Python"
+    ]
   }
 ]
