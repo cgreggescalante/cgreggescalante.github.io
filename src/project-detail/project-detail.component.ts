@@ -22,7 +22,7 @@ export class ProjectDetailComponent implements OnInit {
     const projectURI = String(routeParams.get('projectURI'));
     this.waitForLoad(projectURI);
 
-    fetch('../assets/projects/spotify_history.html')
+    fetch('../assets/projects/' + projectURI + '/' + projectURI + '.html')
       .then(response => response.text())
       .then(text => {
         this.article = text;

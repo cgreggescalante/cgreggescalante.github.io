@@ -1,0 +1,122 @@
+<p>
+  Around the start of January this year, I became aware of a tool Spotify had hidden away on their website that allowed you to download a file containing your listening history for the past year or so.
+  As someone who loves being able to dive into data, this made me really excited about what could be done with those records.
+  I filled out the form to request my data, and a few days later I received an email with a link to download my listening history.
+</p>
+
+<p>
+  Upon downloading the data, I found that it included much more information than I originally expected.
+  Among the files was one containing everything that I had saved to my library, another containing information about all the searches I had made in the past 3 months.
+  One that really piqued my interest was a file titled 'Inferences'.
+  With some inspection, I realized it contained various markers the Spotify believed were accurate descriptions of me.
+  It included simple things, such as what phone I used, what sorts of music I liked to listen to, and the makes of some cars I had connected to with my phone while listening to music.
+  Some other inferences were much more interesting.
+  Spotify had determined that I was a college student, that I was a runner, and that I was outdoorsy.
+  I'd love to figure out more about how they were able to determine this from my listening history, or what other information they had access to when making those judgements.
+</p>
+
+<p>
+  I turned my attention towards three files labeled 'StreamingHistory'.
+  They contained records of every time I had listened to any track or podcast using Spotify.
+  Each entry (of which there were almost 56k) contained the time and date that I finished listening to the song, the name of the artist and the track, and the number of milliseconds I listened for.
+  I had really hoped that the entries would include the URI which spotify associates with every form of media on the platform (this did cause some difficulties later down the line).
+</p>
+
+<p>
+  While I do like JSON data quite a lot, the volume of the data meant that it would be much easier to load it into a database.
+  I chose SQLite, because that's the database I'm most familiar with. I created a table titled 'play' to hold each play in my listening history.
+  I added all the data from each entry in my history to this database, except the 'endTime' field, which I split into separate date and time columns.
+  While this data alone would enable some interesting insights into my listening, I knew that I could do much more if I was able to utilise Spotify's track features which are generated for each track.
+  These features include values quantifying energy, acousticness, liveness, and even a measure of how danceable a track is.
+</p>
+
+<p>
+  Here's where the issue with not having the URIs comes in.
+  In order to obtain the track features, I need to make a call to the Spotify API in which I provide the URI for the track I want features for.
+  After a little investigation, I figured that the easiest way to gather all the URIs for tracks I listened to was to call the 'search' API endpoint with a query string of the track's title followed by the artist's name.
+  While I could make those calls myself with Python's Request library, OAuth has always eluded my understanding, and the Spotify API documentation lists bindings for many languages.
+  Of the offerings for Python, I chose Spotipy, as it seemed to be the most complete implementation available.
+</p>
+
+<p>
+  Taking each unique track name and artist pair from play table, I performed used the search endpoint with a query term consisting of the track and the artist.
+  Fortunately, this ended up being 100% reliable in returning the correct tracks.
+  In the data returned from this operation was the URI, which I added to the corresponding entries in the play table.
+  Then, I used the URIs I had gathered in the track features endpoint to then save the track name, artist, album, uri, duration, and all 12 of Spotify's generated values to a new 'track' table.
+  This data also included the URIs for the artists for each track, which I used to create a table of artists, including their follower count on Spotify, and an integer representing their popularity.
+</p>
+
+<p>
+  Now that I finally had all the data I wanted, it was time to begin some simple analysis.
+  I started by determining my top artists, albums, and tracks for the past year.
+</p>
+
+<figure>
+  <img class="img-fluid" src="assets/projects/spotify_history/top_10_artists.png" alt="Top 10 Artists">
+  <figcaption>Not really any surprise here, I had been on a big Arcade Fire trip all year.</figcaption>
+</figure>
+
+<figure>
+  <img class="img-fluid" src="assets/projects/spotify_history/top_10_albums.png" alt="Top 10 Albums">
+  <figcaption>Pretty much the same story here, "The Suburbs" is definitely one of my favorite albums of all time, and "Shore" has many of my favorite Fleet Foxes tracks.</figcaption>
+</figure>
+
+<figure>
+  <img class="img-fluid" src="assets/projects/spotify_history/top_10_tracks.png" alt="Top 10 Tracks">
+  <figcaption>Checks out, the only one that I wasn't expecting to see was "A Horse with No Name", but that's a song I like playing on guitar a lot, so that would explain it's position.</figcaption>
+</figure>
+
+<p>
+  Now this is all fine and dandy, but I didn't get all this neat information just to find out what music I like, I already have a decent idea of that.
+  Maybe I'll start with some aggregates of my listening.
+</p>
+
+<figure>
+  <img class="img-fluid" src="assets/projects/spotify_history/listening_by_month.png" alt="Listening By Month">
+  <figcaption></figcaption>
+</figure>
+
+<p>
+  This is a little more interesting.
+  So it looks like I listened to almost 70,000 minutes of music through October, that works out to about 1,160 hours, or 48.3 days of music.
+  That definitely sounds like a lot of music, especially given that this dataset only covers the first 304 days of the year.
+  Assuming that I average 8 hours of sleep each night, that means I spend 23.8% of my waking hours listening to music.
+  In the month of January, when I spent 171.2 hours listening, that figure was nearly 35%.
+  Dang.
+</p>
+
+<p>
+  What else can I do with this data? Maybe I could break this down further into each week.
+</p>
+
+<figure>
+  <img class="img-fluid" src="assets/projects/spotify_history/listening_by_week.png" alt="Listening By Week">
+</figure>
+
+<p>
+  I thought this would be more difficult to make, but SQLite has a nice function for translating dates into weeks.
+  You've probably noticed that week 32 seems to be missing, but that is real data.
+  I listened to absolutely no music that week, because I was on a camping trip with some friends, during which my phone was rarely charged.
+  While I was making this, I started wondering about how my listening correlates with days of the week.
+  I'll do that next.
+</p>
+
+<figure>
+  <img class="img-fluid" src="assets/projects/spotify_history/listening_by_dow.png" alt="Listening by Day of Week">
+</figure>
+
+<p>
+  Huh.
+  This mostly makes sense, as I do pretty much the same things every day, that being run, code, and eat.
+  There isn't any specific explanation that pops to mind for the significant decrease on Saturdays.
+  Most of this data would have been gathered while I was in college and participating in the sports teams there.
+  Potentially, Saturday could be partially explained by the awkward timing of our practices those days.
+  They were often later in the morning, around 10 usually.
+  I typically would wake up much later those days, so I didn't have to find some way to occupy myself until practice.
+  Saturdays were also frequently meet days, so I wouldn't be listening to music for most of the day.
+</p>
+
+<figure>
+  <img class="img-fluid" src="assets/projects/spotify_history/listening_by_time.png" alt="Listening By Hour">
+</figure>
+Popular songs by day, how long were they popular for?
