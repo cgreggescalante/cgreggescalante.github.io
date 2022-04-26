@@ -1,0 +1,49 @@
+<p>
+  This project is at the intersection of two of my interests, those being generative art and simulating particle motion.
+  In vector calculus and physics, a vector field is an assignment of a vector to each point in a subset of space.
+  They can be used to represent the motion of fluids, or magnetic and gravitational forces, for example.
+  For my application of a vector field, I used a finite array of PVector objects, as provided through the Processing library.
+  For convenience, the dimensions of the array were set to match the pixel size of my screen.
+  The PVectors were initialized with a constant magnitude, and a heading generated randomly.
+  The headings were set using Processing's noise() function, which is an implementation of perlin noise.
+</p>
+
+<figure class="text-center">
+  <img class="img-fluid" src="assets/projects/vector_fields/BlanketField.png" alt="Blanket Field">
+  <figcaption>I described this setup as a Blanket field, as the particles are initially spread equally across the plane.</figcaption>
+</figure>
+
+<p>
+  This is probably the simplest implementation of these ideas.
+  At the beginning of the simulation, particles are instantiated in a regular grid arrangement with zero momentum, and a low mass.
+  Despite the simplicity, it creates a complex network that can be best described with the same terminology typically used for river networks or blood vessels.
+  The low mass and even arrangement of the particles causes them to quickly collect and form many 'streams'.
+  These streams rapidly form a few distinct paths that meander across the field before reaching one of the edges.
+  An interesting expansion on this setup would be to use the converging paths to map the simulated 'watersheds' that are formed.
+  Such a diagram could be used to generate a complex network of valleys and ridges similar to the Driftless region of Minnesota, Wisconsin, Iowa, and Illinois.
+</p>
+
+<figure class="text-center">
+  <img class="img-fluid" src="assets/projects/vector_fields/driftless_topography.png" alt="Driftless Topography">
+  <cite>Shea, Monika & Schulte, Lisa & Palik, Brian. (2014). Reconstructing Vegetation Past: Pre-Euro-American Vegetation for the Midwest Driftless Area, USA. Ecological Restoration. 32. 417-433. 10.3368/er.32.4.417. </cite>
+</figure>
+
+<figure class="text-center">
+  <img class="img-fluid" src="assets/projects/vector_fields/CurtainField.png" alt="Curtain Field">
+  <figcaption>This is a somewhat more complex setup, which I refer to as the Curtain, for it's resemblance to a curtain being disturbed by a breeze.</figcaption>
+</figure>
+
+<p>
+  To create this setup, I initialized all of the particles at the top of the canvas, all with significant downward momentum.
+  In some iterations of this setup, I added a clause that removed all particles which began to travel upward.
+  While this did make the results more consistent with the Curtain name, I chose to leave the chaotic motion, as I believe it creates a more interesting work.
+</p>
+
+<figure class="text-center">
+  <img class="img-fluid" src="assets/projects/vector_fields/TreeField.png" alt="Tree Field">
+  <figcaption>I refer to this as the Tree, as it reminded me of Truffula trees from Dr. Seuss' book, The Lorax.</figcaption>
+</figure>
+
+<p>
+  For this setup, the particles are distributed randomly within a set distance of the center.
+</p>

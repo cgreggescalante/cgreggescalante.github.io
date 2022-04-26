@@ -17,5 +17,14 @@
     "tags": [
       "Python"
     ]
+  },
+  {
+    "title": "Vector Fields",
+    "uri": "vector_fields",
+    "featured": true,
+    "blurb": "An exploration of generative artwork with vector fields.",
+    "tags": [
+      "Java", "Processing", "Art"
+    ]
   }
 ]
