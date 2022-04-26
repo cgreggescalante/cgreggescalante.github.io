@@ -20,7 +20,7 @@
   },
   {
     "title": "Vector Fields",
-    "uri": "vector_fields",
+    "uri": "vector_field",
     "featured": true,
     "blurb": "An exploration of generative artwork with vector fields.",
     "tags": [
